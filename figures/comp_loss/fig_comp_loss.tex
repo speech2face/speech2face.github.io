@@ -1,0 +1,46 @@
+
+
+		# "1022Sanaa_Lathan_wy1oXdoq1hs_0000003.jpg
+		# 1121Preity_Zinta_kxXTZiQEu1E_0000032.jpg
+		# 1013Raini_Rodriguez_qlMFZfWY-PE_0000001.jpg
+		# 1113Francia_Raisa_xlefqKaAHg0_0000006.jpg
+		# 0014Pablo_Schreiber_QKKD6tBn-UI_0000012.jpg
+		# 0014Kodi_Smit-McPhee_NUZdfoqhB8o_0000015.jpg
+		# 0020Adam_Beach_vy8sQ82o0fM_0000003.jpg
+		# 1134Mira_Furlan_06zLGvkw6y4_0000009.jpg"
+
+\newcommand{\complossimga}[1]{#10032Stevie_Wonder_Q5CakG-6vIY_0000007.jpg}
+\newcommand{\complossimgb}[1]{#11013Raini_Rodriguez_qlMFZfWY-PE_0000001.jpg}
+\newcommand{\complossimgc}[1]{#11115Loan_Chabanol_wR579s6AbqE_0000001.jpg}
+\newcommand{\complossimgd}[1]{#10020Adam_Beach_vy8sQ82o0fM_0000003.jpg}
+\newcommand{\complossimge}[1]{#10020Adam_Beach_vy8sQ82o0fM_0000003.jpg}
+\def\patha{figures/comploss/ori/}
+\def\pathb{figures/comploss/200k_imgloss/}
+\def\pathc{figures/comploss/200k_1kloss/}
+\def\pathd{figures/comploss/400k_imgloss/}
+\def\pathe{figures/comploss/400k_1kloss/}
+\def\complosswidth{0.2\linewidth}
+\newcommand{\putimg}[1]{\includegraphics[width=\complosswidth]{#1}}
+
+\putimg{\complossimga{\patha}} & \putimg{\complossimga{\pathb}} & \putimg{\complossimga{\pathc}} & \putimg{\complossimga{\pathd}} & \putimg{\complossimga{\pathe}}\\
+\putimg{\complossimgb{\patha}} & \putimg{\complossimgb{\pathb}} & \putimg{\complossimgb{\pathc}} & \putimg{\complossimgb{\pathd}} & \putimg{\complossimgb{\pathe}}\\
+\putimg{\complossimgc{\patha}} & \putimg{\complossimgc{\pathb}} & \putimg{\complossimgc{\pathc}} & \putimg{\complossimgc{\pathd}} & \putimg{\complossimgc{\pathe}}\\
+\putimg{\complossimgd{\patha}} & \putimg{\complossimgd{\pathb}} & \putimg{\complossimgd{\pathc}} & \putimg{\complossimgd{\pathd}} & \putimg{\complossimgd{\pathe}}\\
+
+
+
+Reference image & \putimg{\complossimga{\patha}} & \putimg{\complossimgb{\patha}} & \putimg{\complossimgc{\patha}} & \putimg{\complossimgd{\patha}} & \putimg{\complossimge{\patha}}\\
+Img. loss & \putimg{\complossimga{\pathb}} & \putimg{\complossimgb{\pathb}} & \putimg{\complossimgc{\pathb}} & \putimg{\complossimgd{\pathb}} & \putimg{\complossimge{\pathb}}\\
+1k loss & \putimg{\complossimga{\pathc}} & \putimg{\complossimgb{\pathc}} & \putimg{\complossimgc{\pathc}} & \putimg{\complossimgd{\pathc}} & \putimg{\complossimge{\pathc}}
+
+\resizebox{\linewidth}{!}{
+    \begin{tabular}{@{}c|@{}c@{}c@{}|@{}c@{}c@{}}
+    & \multicolumn{2}{@{}c@{}|@{}}{200k iter.} & \multicolumn{2}{c}{400k iter.}\\
+    Original image & & & &\\
+    (ref. frame) & Img. loss & 1k loss & Img. loss & 1k loss\\
+    \putimg{\complossimga{\patha}} & \putimg{\complossimga{\pathb}} & \putimg{\complossimga{\pathc}} & \putimg{\complossimga{\pathd}} & \putimg{\complossimga{\pathe}}\\
+    \putimg{\complossimgb{\patha}} & \putimg{\complossimgb{\pathb}} & \putimg{\complossimgb{\pathc}} & \putimg{\complossimgb{\pathd}} & \putimg{\complossimgb{\pathe}}\\
+    \putimg{\complossimgc{\patha}} & \putimg{\complossimgc{\pathb}} & \putimg{\complossimgc{\pathc}} & \putimg{\complossimgc{\pathd}} & \putimg{\complossimgc{\pathe}}\\
+    \putimg{\complossimgd{\patha}} & \putimg{\complossimgd{\pathb}} & \putimg{\complossimgd{\pathc}} & \putimg{\complossimgd{\pathd}} & \putimg{\complossimgd{\pathe}}\\
+    \end{tabular}
+}

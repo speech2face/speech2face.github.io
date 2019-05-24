@@ -1,0 +1,963 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>CVPR'19| Speech2Face: Learning the Face Behind a Voice</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+</head>
+
+<body>
+<div class="container">
+<h4 align="center">IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2019</h4>
+<h1 align="center">Speech2Face: Learning the Face Behind a Voice</h1>
+<h2 align="center">Supplementary Material</h2>
+<p align="center">&nbsp;</p>
+<p>
+In this supplementary, we show the input audio results that cannot be included in the main paper as well as large number of additional qualitative results.
+The input audio can be played in the browser (tested on Chrome version >= 70.0 and HTML5 recommended).</p>
+<p> <strong>** Headphones recommended **</strong></p>
+<p>&nbsp;</p>
+<table border="0" cellpadding="10">
+  <tbody>
+    <tr>
+      <td><a href="#fig1"><img src="images/fig1_thumb.jpg" alt="" width="200"/></a></td>
+      <td><a href="#fig1">Figure 1: Teaser</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fig3"><img src="images/fig3_thumb.jpg" width="200" alt=""/></a></td>
+      <td><p><a href="#fig3">Figure 3: Qualitative results on the AVSpeech</a></p>
+        <p>Additional 500 randomly-sampled results on AVSpeech can be found <b><a href="qualitative/index.html">HERE</a></b></p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="#fig4"><img src="images/fig4_thumb.jpg" width="200" alt=""/></a></td>
+      <td><a href="#fig4">Figure 4: Facial attribute evaluation</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fig5"><img src="figures/craniofacialfeat_ab.jpg" width="200" alt=""/></a></td>
+      <td>
+      <p><a href="#fig5">Figure 5: Craniofacial features</a></p>
+    </td>
+    </tr>
+    <tr>
+      <td><a href="#fig6"><img src="images/fig10_thumb.jpg" width="200" alt=""/></a></td>
+      <td><a href="#fig6">Figure 6: The effect of input audio duration</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fig7"><img src="images/fig5_thumb.jpg" width="200" alt=""/></a></td>
+      <td>
+      <p><a href="#fig7">Figure 7: S2F-based retrieval</a></p>
+      <p>Additional 100 randomly-sampled S2F-based retrieval results can be found <b><a href="retrieve/index.html">HERE</a></b></p>
+    </td>
+    </tr>
+    <tr>
+      <td><a href="#fig8"><img src="images/pixelloss_thumb.jpg" width="200" alt=""/></a></td>
+      <td><a href="#fig8">Figure 8: Comparisons to a pixel loss</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fig10"><img src="images/fig6_thumb.jpg" width="200" alt=""/></a></td>
+      <td><a href="#fig10">Figure 10: Temporal and cross-video consistency</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fig11"><img src="images/fig7_thumb.jpg" width="200" alt=""/></a></td>
+      <td><a href="#fig11">Figure 11: The effect of language</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fig12"><img src="images/fig8_thumb.jpg" width="200" alt=""/></a></td>
+      <td><a href="#fig12">Figure 12: Failure cases</a></td>
+    </tr>
+    <tr>
+      <td><a href="#fig13"><img src="images/fig12_thumb.jpg" width="200" alt=""/></a></td>
+      <td>
+        <p><a href="#fig13">Figure 13: Speech-to-cartoon</a> </p>
+      </td>
+    </tr>
+    <tr>
+      <td><a href="#figA"><img src="images/fig11_thumb.jpg" width="200" alt=""/></a></td>
+      <td><a href="#figA">Figure 14: Visualizing the feature space</a></td>
+    </tr>
+  </tbody>
+</table>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->
+<h2><a id="fig1"></a>Figure 1: Teaser</h2>
+<table border="0" align="center">
+  <tbody>
+    <tr align="center">
+      <td>&nbsp;</td>
+      <td><strong>True face<br />
+          (for reference)</strong></td>
+      <td><strong>Face reconstructed<br />
+        from speech</strong></td>
+      <td width="24">&nbsp;</td>
+      <td><strong>True face<br />
+        (for reference)</strong></td>
+      <td><strong>Face reconstructed<br />
+        from speech</strong></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/0024Daniel_Craig_L1Ltxf1NeL8_0000007.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/0024Daniel_Craig_L1Ltxf1NeL8_0000007.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/1044Phyllis_Diller_qoc0k5YwbRI_0000019.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/1044Phyllis_Diller_qoc0k5YwbRI_0000019.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+          <source src="FiginMain/Wav/0024Daniel_Craig_L1Ltxf1NeL8_0000007.wav" type="audio/wav" />
+          Does not support </audio></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+          <source src="FiginMain/Wav/1044Phyllis_Diller_qoc0k5YwbRI_0000019.wav" type="audio/wav" />
+          Does not support </audio></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/0014Kodi_Smit-McPhee_NUZdfoqhB8o_0000015.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/0014Kodi_Smit-McPhee_NUZdfoqhB8o_0000015.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/1114Maria_Sharapova_rWaBVelzaFk_0000022.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/1114Maria_Sharapova_rWaBVelzaFk_0000022.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+          <source src="FiginMain/Wav/0014Kodi_Smit-McPhee_NUZdfoqhB8o_0000015.wav" type="audio/wav" />
+          Does not support </audio></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+          <source src="FiginMain/Wav/1114Maria_Sharapova_rWaBVelzaFk_0000022.wav" type="audio/wav" />
+          Does not support </audio></td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/0022Andre_Braugher_p5AJtU5gclc_0000004.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/0022Andre_Braugher_p5AJtU5gclc_0000004.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/1111Parineeti_Chopra_2yUgv3B_YcI_0000002.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/1111Parineeti_Chopra_2yUgv3B_YcI_0000002.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+          <source src="FiginMain/Wav/0022Andre_Braugher_p5AJtU5gclc_0000004.wav" type="audio/wav" />
+          Does not support </audio></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+          <source src="FiginMain/Wav/1111Parineeti_Chopra_2yUgv3B_YcI_0000002.wav" type="audio/wav" />
+          Does not support </audio></td>
+      <td>&nbsp;</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <b>Teaser results on the VoxCeleb dataset.</b>
+Several results of our method are shown. The true faces are shown just for reference; our model takes only an audio waveform as input. Note that our goal is not to reconstruct an accurate image of the person, but rather to recover characteristic physical features that are correlated with the input speech. 
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->
+<h2><a id="fig3"></a>Figure 3: Qualitative results on the AVSpeech</h2>
+<p>&nbsp;</p>
+<table border="0" align="center">
+  <tbody>
+    <tr align="center">
+      <td>&nbsp;</td>
+      <td><strong>Original image<br />
+        (reference frame)
+      </strong></td>
+      <td><strong>Reconstruction<br />
+        from image
+      </strong></td>
+      <td><strong>Reconstruction<br />
+        from audio
+      </strong></td>
+      <td width="24">&nbsp;</td>
+      <td><strong>Original image<br />
+        (reference frame) </strong></td>
+      <td><strong>Reconstruction<br />
+        from image </strong></td>
+      <td><strong>Reconstruction<br />
+        from audio </strong></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/9enMVDwgboU_082.500000-085.500000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/9enMVDwgboU_082.500000-085.500000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/9enMVDwgboU_082.500000-085.500000.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/z1TBw124L1Q_090.000000-097.300000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/z1TBw124L1Q_090.000000-097.300000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/z1TBw124L1Q_090.000000-097.300000.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/9enMVDwgboU_082.500000-085.500000.wav" type="audio/wav" />
+      Does not support </audio></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/z1TBw124L1Q_090.000000-097.300000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/2HFQpxDaymQ_063.688622-075.158422.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/2HFQpxDaymQ_063.688622-075.158422.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/2HFQpxDaymQ_063.688622-075.158422.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/Prtm6h3e8CE_270.400000-275.800000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/Prtm6h3e8CE_270.400000-275.800000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/Prtm6h3e8CE_270.400000-275.800000.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/2HFQpxDaymQ_063.688622-075.158422.wav" type="audio/wav" />
+      Does not support </audio></td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/Prtm6h3e8CE_270.400000-275.800000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/r4k6Gm4tlXw_280.864000-291.458000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/r4k6Gm4tlXw_280.864000-291.458000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/r4k6Gm4tlXw_280.864000-291.458000.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/LF-o-QC1KE8_016.516500-023.023000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/LF-o-QC1KE8_016.516500-023.023000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/LF-o-QC1KE8_016.516500-023.023000.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/r4k6Gm4tlXw_280.864000-291.458000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/LF-o-QC1KE8_016.516500-023.023000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/gclHPBFbp_w_141.920000-148.520000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/gclHPBFbp_w_141.920000-148.520000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/gclHPBFbp_w_141.920000-148.520000.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/H6hYLZpfP_c_261.120000-266.200000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/H6hYLZpfP_c_261.120000-266.200000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/H6hYLZpfP_c_261.120000-266.200000.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/gclHPBFbp_w_141.920000-148.520000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/H6hYLZpfP_c_261.120000-266.200000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/KGf7u8Tkq4M_120.000000-134.880000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/KGf7u8Tkq4M_120.000000-134.880000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/KGf7u8Tkq4M_120.000000-134.880000.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/yKrXX8p4dnM_280.780500-286.536256.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/yKrXX8p4dnM_280.780500-286.536256.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/yKrXX8p4dnM_280.780500-286.536256.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/KGf7u8Tkq4M_120.000000-134.880000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/yKrXX8p4dnM_280.780500-286.536256.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/2Iy0BSXfK6I_150.000000-160.280000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/2Iy0BSXfK6I_150.000000-160.280000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/2Iy0BSXfK6I_150.000000-160.280000.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/ssi9TIOqdVU_262.360000-267.280000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/ssi9TIOqdVU_262.360000-267.280000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/ssi9TIOqdVU_262.360000-267.280000.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/2Iy0BSXfK6I_150.000000-160.280000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/ssi9TIOqdVU_262.360000-267.280000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/csjzOcVk4WQ_246.933333-250.400000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/csjzOcVk4WQ_246.933333-250.400000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/csjzOcVk4WQ_246.933333-250.400000.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/uf1ZqPZRaxQ_188.655133-199.933067.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/uf1ZqPZRaxQ_188.655133-199.933067.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/uf1ZqPZRaxQ_188.655133-199.933067.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/csjzOcVk4WQ_246.933333-250.400000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/uf1ZqPZRaxQ_188.655133-199.933067.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/IjqSruGRIWk_241.307000-249.632000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/IjqSruGRIWk_241.307000-249.632000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/IjqSruGRIWk_241.307000-249.632000.jpg" width="150" /></td>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/KO1rbgMS2R8_145.840000-150.000000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_f2f/KO1rbgMS2R8_145.840000-150.000000.jpg" width="150" /></td>
+      <td><img src="FiginMain/Face_s2f/KO1rbgMS2R8_145.840000-150.000000.jpg" width="150" /></td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+        speech</strong></td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/IjqSruGRIWk_241.307000-249.632000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+      <td>&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;">
+        <source src="FiginMain/Wav/KO1rbgMS2R8_145.840000-150.000000.wav" type="audio/wav" />
+        Does not support </audio></td>
+      <td></td>
+      <td></td>
+    </tr>
+  </tbody>
+</table>
+<p>
+<b> Qualitative results on the AVSpeech test set.</b> 
+  For every example (triplet of images) we show: (left) the original image, i.e.,
+a representative frame from the video cropped around the speaker’s face; (middle) the frontalized, lighting-normalized face decoder
+reconstruction from the VGG-Face feature extracted from the original image; (right) our Speech2Face reconstruction, computed by decoding
+the predicted VGG-Face feature from the audio. In this figure, we highlight successful results of our method. Some failure cases are shown
+in Fig. 12.
+  <!--For every example (triplet of images) we show: (left) the original image, i.e., a representative frame from the video cropped around the person's face; (middle) the frontalized, lighting-normalized face decoder reconstruction from the VGG-Face feature extracted from the original image; (right) our Speech2Face reconstruction, computed by decoding the predicted VGG-Face feature from the audio. In this figure, we highlight successful results in our method. Some failure cases are shown in Figure 8.-->
+</p>
+<p>See additional 500 randomly-sampled results on AVSpeech <a href="qualitative/index.html">here</a>.</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->
+<h2><a id="fig4"></a>Figure 4: Facial attribute evaluation</h2>
+<img src="figures/supp_attr.png" width="100%"/>
+<p><b>Attribute confusion matrix between original face image and face reconstruction from face feature.</b> 
+In the main paper, we show the facial attribute confusion matrices comparing the classification results on our Speech2Face image reconstructions and those obtained from the original images for gender, age, and ethnicity. 
+Due to the domain gap between the original image and reconstructed faces, the usage of the existing classifier (Face++) may introduce some bias in the result. 
+In this supplementary material, we show the confusion matrices comparing the classification results on face reconstructions from the original images and those obtained from the original images for reference to see the performance deviation sourced by the face decoder module.
+Please compare with Figure 4 in the main paper.
+The performance along diagonal entries can be considered as a pseudo upper bound of the performance of the confusion matrices in Figure 4.
+
+The confusion matrices are row-wise normalized, and strong diagonal tendency indicates better performance. 
+We evaluate the attribute over the AVSpeech test set, which is consistent with Figure 4.
+
+<!--
+, so that one can get a better understanding of the performance of Figure 4 by taking into account the domain gap.
+We compute the attribute confusion matrices between original face image and face reconstruction from face feature with row-wise normalization, where strong diagonal tendency indicates better performance. We evaluate the attribute over the AVSpeech test set.
+-->
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->
+  <h2><a id="fig5"></a>Figure 5: Craniofacial feature</h2>
+<table border="0" align="center">
+<tbody>
+<tr>
+  <td><img src="figures/craniofacialfeat_ab.jpg" width="500"></td>
+  <td width="20">&nbsp;</td>
+  <td><img src="figures/craniofacialfeat_c.jpg" width="350"></td>
+</tr>
+</tbody>
+</table>
+<p><b>Craniofacial features.</b> 
+We measure the correlation between craniofacial features extracted from (a) face decoder reconstructions from the original image (F2F), and (b) features extracted
+from our corresponding Speech2Face reconstructions (S2F); the
+features are computed from detected facial landmarks, as described
+in [30]. The table reports Pearson correlation coefficient and statistical significance computed over 1,000 test images for each feature.
+Random baseline is computed for “Nasal index” by comparing
+random pairs of F2F reconstruction (a) and S2F reconstruction (b).
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+  <!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+<h2><a id="fig6"></a>Figure 6: The effect of input audio duration</h2>
+<table border="0" align="center">
+  <tbody>
+    <tr>
+      <td>&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/DU-WU0SxkHI_164.063900-175.175000.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_ori/-ntzmTie6-Y_103.870433-116.616500.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_ori/7apoZ_j5S6s_197.780917-209.292417.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_ori/7WiawQs91rQ_165.760000-173.080000.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_ori/W_J0-m3eHpo_043.835456-054.012289.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_ori/ysOfcFr9JU8_053.560000-060.000000.jpg" width="150" height="150"/></td>
+    </tr>
+    <tr>
+      <td rowspan="2" style='white-space: nowrap;'>3 seconds</td>
+      <td><img src="FiginMain/Face_s2f/fig10_11.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_12.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_13.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_14.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_15.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_16.jpg" width="150" height="150"/></td>
+    </tr>
+    <tr>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav3s/DU-WU0SxkHI_164.063900-175.175000.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav3s/-ntzmTie6-Y_103.870433-116.616500.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav3s/7apoZ_j5S6s_197.780917-209.292417.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav3s/7WiawQs91rQ_165.760000-173.080000.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav3s/W_J0-m3eHpo_043.835456-054.012289.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav3s/ysOfcFr9JU8_053.560000-060.000000.wav" type="audio/wav"> Does not support </audio></td>
+    </tr>
+    <tr>
+      <td rowspan="2" style='white-space: nowrap;'>6 seconds</td>
+      <td><img src="FiginMain/Face_s2f/fig10_21.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_22.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_23.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_24.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_25.jpg" width="150" height="150"/></td>
+      <td><img src="FiginMain/Face_s2f/fig10_26.jpg" width="150" height="150"/></td>
+    </tr>
+    <tr>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/DU-WU0SxkHI_164.063900-175.175000.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/-ntzmTie6-Y_103.870433-116.616500.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/7apoZ_j5S6s_197.780917-209.292417.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/7WiawQs91rQ_165.760000-173.080000.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/W_J0-m3eHpo_043.835456-054.012289.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/ysOfcFr9JU8_053.560000-060.000000.wav" type="audio/wav"> Does not support </audio></td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <b> The effect of input audio duration.</b> 
+  We compare our
+face reconstructions when using 3-second (middle row) and 6-
+second (bottom row) input voice segments at test time (in both
+cases we use the same model, trained on 6-second segments). The
+top row shows representative frames from the videos for reference.
+With longer speech duration the reconstructed faces capture the
+facial attributes better.
+  <!--We compare our face reconstructions when using 3-second (middle row) and 6-second (bottom row) input voice segments at test time (in both cases we use the same model, trained on 6-second segments). The top row shows representative frames from the videos for reference. With longer speech duration the reconstructed faces capture the facial attributes better.-->
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->
+<h2><a id="fig7"></a>Figure 7: S2F-based retrieval</h2>
+<table border="0" align="center">
+<tbody>
+<tr>
+  <td><img src="FiginMain/Face_s2f/eXyOhQspoj4_018.655000-021.655000.jpg" width="150"></td>
+  <td width="20">&nbsp;</td>
+  <td><img src="FiginMain/Face_ori/fig5_11.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_12.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_13.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_14.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_15.jpg" width="150"></td>
+</tr>
+<tr>
+  <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/eXyOhQspoj4_018.655000-021.655000.wav" type="audio/wav"> Does not support </audio></td>
+  <td width="20">&nbsp;</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td><img src="FiginMain/Face_s2f/yaYz1eGt-iw_254.899000-262.366000.jpg" width="150"></td>
+  <td width="20">&nbsp;</td>
+  <td><img src="FiginMain/Face_ori/fig5_21.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_22.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_23.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_24.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_25.jpg" width="150"></td>
+</tr>
+<tr>
+  <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/yaYz1eGt-iw_254.899000-262.366000.wav" type="audio/wav"> Does not support </audio></td>
+  <td width="20">&nbsp;</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td><img src="FiginMain/Face_s2f/Y3W9hNBMVzk_199.632000-209.976000.jpg" width="150"></td>
+  <td width="20">&nbsp;</td>
+  <td><img src="FiginMain/Face_ori/fig5_31.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_32.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_33.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_34.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_35.jpg" width="150"></td>
+</tr>
+<tr>
+  <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/Y3W9hNBMVzk_199.632000-209.976000.wav" type="audio/wav"> Does not support </audio></td>
+  <td width="20">&nbsp;</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td><img src="FiginMain/Face_s2f/Vkmv8jRqd5w_180.113000-187.420000.jpg" width="150"></td>
+  <td width="20">&nbsp;</td>
+  <td><img src="FiginMain/Face_ori/fig5_41.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_42.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_43.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_44.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_45.jpg" width="150"></td>
+</tr>
+<tr>
+  <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/Vkmv8jRqd5w_180.113000-187.420000.wav" type="audio/wav"> Does not support </audio></td>
+  <td width="20">&nbsp;</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+<tr>
+  <td><img src="FiginMain/Face_s2f/E9iOacG2GAs_197.263733-202.502300.jpg" width="150"></td>
+  <td width="20">&nbsp;</td>
+  <td><img src="FiginMain/Face_ori/fig5_51.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_52.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_53.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_54.jpg" width="150"></td>
+  <td><img src="FiginMain/Face_ori/fig5_55.jpg" width="150"></td>
+</tr>
+<tr>
+  <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/E9iOacG2GAs_197.263733-202.502300.wav" type="audio/wav"> Does not support </audio></td>
+  <td width="20">&nbsp;</td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+  <td></td>
+</tr>
+</tbody>
+</table>
+<p><b>S2F => Face retrieval examples.</b> 
+  We query a database of
+5,000 face images by comparing our Speech2Face prediction of input audio to all VGG-Face face features in the database (computed
+directly from the original faces). For each query, we show the top-5
+retrieved samples. The last row is an example where the true face
+was not among the top results, but still shows visually close results
+to the query.
+In this figure, we highlight successful results of our method, and mark ground-truth matches by red color.
+<!--We query a database of 5,000 face images by comparing our Speech2Face prediction of input audio to all VGG-Face face features in the database (computed directly from the original faces). For each query, we show the top-5 retrieved samples. The true images of the speakers are marked in red. 
+The last row is an example where 
+the true face was not among the top results, but still shows visually close results to the query.-->
+</p>
+<p>See additional 100 randomly-sampled S2F-based retrieval results <a href="retrieve/index.html">here</a>.</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+ <h2><a id="fig8"></a>Figure 8: Comparisons to a pixel loss</h2>
+<table border="0" align="center">
+<tbody>
+<tr>
+  <td><img src="figures/pixel_loss.jpg" width="600"></td>
+</tr>
+</tbody>
+</table>
+<p><b>Comparisons to a pixel loss.</b> 
+The results obtained with
+an L1 loss on the output image and our full loss (Eq. 1) are shown
+after 300k and 500k training iterations (indicating convergence).
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+  <!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+<h2><a id="fig10"></a>Figure 10: Temporal and cross-video consistency</h2>
+<table border="0" align="center">
+  <tbody>
+    <tr>
+      <td><img src="FiginMain/Face_ori/0014Andy_Samberg_tGD9ffH-ozo_0000001.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_ori/0014Andy_Samberg_tGD9ffH-ozo_0000002.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_ori/0014Andy_Samberg_tGD9ffH-ozo_0000004.jpg" width="150" height="150"></td>
+      <td width="20">&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/0014Andy_Samberg_xKWYozNgnRM_0000005.jpg" width="150" height="150"></td>
+    </tr>
+    <tr>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/0014Andy_Samberg_tGD9ffH-ozo_0000001.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/0014Andy_Samberg_tGD9ffH-ozo_0000002.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/0014Andy_Samberg_tGD9ffH-ozo_0000004.wav" type="audio/wav"> Does not support </audio></td>
+      <td width="20">&nbsp;</td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/0014Andy_Samberg_xKWYozNgnRM_0000005.wav" type="audio/wav"> Does not support </audio></td>
+    </tr>
+    <tr>
+      <td><img src="FiginMain/Face_s2f/0014Andy_Samberg_tGD9ffH-ozo_0000001.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/0014Andy_Samberg_tGD9ffH-ozo_0000002.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/0014Andy_Samberg_tGD9ffH-ozo_0000004.jpg" width="150" height="150"></td>
+      <td width="20">&nbsp;</td>
+      <td><img src="FiginMain/Face_s2f/0014Andy_Samberg_xKWYozNgnRM_0000005.jpg" width="150" height="150"></td>
+    </tr>
+    <tr>
+      <td colspan="3" align="center">
+        (a)
+      </td>
+      <td width="20">&nbsp;</td>
+      <td align="center">
+        (b)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><b> Temporal and cross-video consistency.</b> 
+  Face reconstruction from different speech segments of the same person taken
+from different parts within (a) the same or from (b) a different
+video.
+  <!--Face reconstruction from different speech segments of the same person taken from different parts within (a) the same or from (b) a different video.-->
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+<h2><a id="fig11"></a>Figure 11: The effect of language</h2>
+<table border="0" align="center">
+  <tbody>
+    <tr>
+      <td><img src="FiginMain/Face_s2f/6ce-english.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/6ce-chinese.jpg" width="150" height="150"></td>
+      <td width="20">&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/E5KlZY_dF88_288.054433-292.225267.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/E5KlZY_dF88_288.054433-292.225267.jpg" width="150" height="150"></td>
+    </tr>
+    <tr>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/6ce-english.wav" type="audio/wav"> Does not support </audio></td>
+      <td><audio controls="controls" style="width: 150px;"> <source src="FiginMain/Wav/6ce-chinese.wav" type="audio/wav"> Does not support </audio></td>
+      <td width="20">&nbsp;</td>
+      <td colspan="2"><audio controls="controls"> <source src="FiginMain/Wav/E5KlZY_dF88_288.054433-292.225267.wav" type="audio/wav"> Does not support </audio></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center" width="300">(a) An Asian male speaking in English (left) &amp; Chinese (right)</td>
+      <td width="20">&nbsp;</td>
+      <td colspan="2" align="center" width="300">(b) An Asian girl speaking in English</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <b>The effect of language.</b>  We notice mixed performance in terms of the ability of the model to handle languages and accents. 
+  (a) A sample case of language-dependent face reconstructions.
+  (b) A sample case that successfully factors out the language.
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+<h2><a id="fig12"></a>Figure 12: Failure cases</h2>
+<table border="0" align="center">
+  <tbody>
+    <tr>
+      <td><img src="FiginMain/Face_ori/xZjeo41ugaE_060.200000-064.333333.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/xZjeo41ugaE_060.200000-064.333333.jpg" width="150" height="150"></td>
+      <td width="20">&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/Yho-X6AajgM_112.280000-120.000000.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/Yho-X6AajgM_112.280000-120.000000.jpg" width="150" height="150"></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><audio controls="controls"> <source src="FiginMain/Wav/xZjeo41ugaE_060.200000-064.333333.wav" type="audio/wav"> Does not support </audio></td>
+      <td width="20">&nbsp;</td>
+      <td colspan="2" align="center"><audio controls="controls"> <source src="FiginMain/Wav/Yho-X6AajgM_112.280000-120.000000.wav" type="audio/wav"> Does not support </audio></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">(a) Gender mismatch</td>
+      <td width="20">&nbsp;</td>
+      <td colspan="2" align="center">(c) Age mismatch (old to young)</td>
+    </tr>
+    <tr><td colspan="4">&nbsp;</td></tr>
+    <tr>
+      <td><img src="FiginMain/Face_ori/BWOlWA6zimQ_139.733333-142.800000.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/BWOlWA6zimQ_139.733333-142.800000.jpg" width="150" height="150"></td>
+      <td width="20">&nbsp;</td>
+      <td><img src="FiginMain/Face_ori/ntw6dYz-joA_120.000000-131.000000.jpg" width="150" height="150"></td>
+      <td><img src="FiginMain/Face_s2f/ntw6dYz-joA_120.000000-131.000000.jpg" width="150" height="150"></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center"><audio controls="controls"> <source src="FiginMain/Wav/BWOlWA6zimQ_139.733333-142.800000.wav" type="audio/wav"> Does not support </audio></td>
+      <td width="20">&nbsp;</td>
+      <td colspan="2" align="center"><audio controls="controls"> <source src="FiginMain/Wav/ntw6dYz-joA_120.000000-131.000000.wav" type="audio/wav"> Does not support </audio></td>
+    </tr>
+    <tr>
+      <td colspan="2" align="center">(b) Ethnicity mismatch</td>
+      <td width="20">&nbsp;</td>
+      <td colspan="2" align="center">(d) Age mismatch (young to old)</td>
+    </tr>
+  </tbody>
+</table>
+<p>
+  <b>Example failure cases.</b> (a) High-pitch male voice, e.g., of kids, may lead to a face image with female features. (b) Spoken language does not match ethnicity. (c-d) Age mismatches.
+</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+<h2><a id="fig13"></a>Figure 13: Speech-to-cartoon</h2>
+<table border="0" align="center">
+  <tbody align="center">
+    <tr>
+      <td>
+      </td>
+      <td>
+        <strong>Original image<br />
+        (reference frame)
+        </strong>
+      </td>
+      <td>
+        <strong>Reconstruction<br />
+        from audio
+        </strong>
+      </td>
+      <td>
+        <strong>Cartoon<br />
+        obtained from Gboard
+        </strong>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/0NdNhQJdduQ_030.030000-034.784750.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/0NdNhQJdduQ_030.030000-034.784750_s2f.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/0NdNhQJdduQ_030.030000-034.784750_cartoon.png" width="150" height="150"/>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td>
+        <audio controls="controls" style="width: 150px;"> <source src="additional_face2cartoon/0NdNhQJdduQ_030.030000-034.784750.wav" type="audio/wav"> Does not support </audio>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/1JUaTAK251w_264.998067-269.636033.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/1JUaTAK251w_264.998067-269.636033_s2f.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/1JUaTAK251w_264.998067-269.636033_cartoon.png" width="150" height="150"/>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td>
+        <audio controls="controls" style="width: 150px;"> <source src="additional_face2cartoon/1JUaTAK251w_264.998067-269.636033.wav" type="audio/wav"> Does not support </audio>
+      </td>
+      <td>
+      </td>
+      
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/DV1CthCayCk_168.751922-179.929756.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/DV1CthCayCk_168.751922-179.929756_s2f.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/DV1CthCayCk_168.751922-179.929756_cartoon.png" width="150" height="150"/>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td>
+        <audio controls="controls" style="width: 150px;"> <source src="additional_face2cartoon/DV1CthCayCk_168.751922-179.929756.wav" type="audio/wav"> Does not support </audio>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/hMRa8g6903U_015.840000-030.000000.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/hMRa8g6903U_015.840000-030.000000_s2f.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/hMRa8g6903U_015.840000-030.000000_cartoon.png" width="150" height="150"/>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td>
+        <audio controls="controls" style="width: 150px;"> <source src="additional_face2cartoon/hMRa8g6903U_015.840000-030.000000.wav" type="audio/wav"> Does not support </audio>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/thi87dGy5mQ_168.500000-172.600000.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/thi87dGy5mQ_168.500000-172.600000_s2f.jpg" width="150" height="150"/>
+      </td>
+      <td>
+        <img src="additional_face2cartoon/thi87dGy5mQ_168.500000-172.600000_cartoon.png" width="150" height="150"/>
+      </td>
+    </tr>
+    <tr>
+      <td><strong>Input<br />
+      speech</strong></td>
+      <td>
+        <audio controls="controls" style="width: 150px;"> <source src="additional_face2cartoon/thi87dGy5mQ_168.500000-172.600000.wav" type="audio/wav"> Does not support </audio>
+      </td>
+      <td>
+      </td>
+      <td>
+      </td>
+    </tr>
+    <tr>
+      <td>
+      </td>
+      <td>
+        (a)
+      </td>
+      <td>
+        (b)
+      </td>
+      <td>
+        (c)
+      </td>
+    </tr>
+  </tbody>
+</table>
+<p><b> Speech-to-cartoon.</b> Our reconstructed faces from audio (b) can be re-rendered as cartoons (c) using existing tools, such as the personalized emoji app available in <a href="https://goo.gl/hu5DsR">Gboard</a>, the keyboard app in Android phones.
+   (a) The true images of the person are
+shown for reference.
+  </p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+<h2><a id="figA"></a>Figure 14: Visualizing the feature space</h2>
+<p>In the main paper we show the t-SNE embeddings for the features of VoxCeleb samples. Here we show the t-SNE of AVSpeech samples.</p>
+<img src="figures/tsne_avspeech.png" width="100%"/>
+<p><b>Visualizing the features space (AVSpeech).</b> t-SNE visualizations of the AVSpeech samples
+for the face features obtained from the original images by feeding them into VGG-Face (red boxes), and for the features predicted by our voice encoder (green boxes). We use the same computed projections for each feature type, but in each plot color-code the data points using a different attribute (from left to right: gender, age, and ethnicity).
+   We use the AVSpeech dataset and the attribute annotations obtained using the gender, age, and ethnicity classifiers available from the Face++ service (not used for training). Notice for example how gender is the major distinctive feature in our learned feature space, dividing the space into two separated clusters, as for the samples taken from the VoxCeleb dataset shown in Fig. 11 of the main paper. The face features (red boxes) show local clusters to a lesser degree than those of the VoxCeleb dataset, since the AVSpeech dataset includes a larger number of identities. *These labels are as obtained from the Face++ ethnicity classifier.</p>
+<p><a href="#">To the top.</a></p>
+<p>&nbsp;</p>
+<p>&nbsp;</p>
+<!--=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=-=-=-=-=-==-=-=-=-=-=-=-=-=-=--->  
+</body>
+</html>

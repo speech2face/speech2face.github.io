@@ -1,1 +1,234 @@
-hello world
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+Speech2Face: Learning the Face Behind a Voice
+</title>
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-65563403-3"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-65563403-3');
+</script>
+</head>
+<body>
+<div class="container">
+  <p>&nbsp;</p>
+  <p><span class="venue">IEEE Conference on Computer Vision and Pattern Recognition (CVPR) 2019</span></p>
+  <p><span class="title">Speech2Face: Learning the Face Behind a Voice</span></p>
+  <br />
+  <table border="0" align="center" class="authors">
+    <tr align="center" valign="bottom">
+	  <td>Tae-Hyun Oh<sup>* &#10013;</sup></td>
+	  <td>Tali Dekel<sup>*</sup></td>
+	  <td>Changil Kim<sup>* &#10013;</sup></td>
+      <td>Inbar Mosseri<sup> </sup></td>
+      <td>William T. Freeman<sup>&#10013;</sup></td>
+      <td>Michael Rubinstein<sup> </sup></td>
+      <td>Wojciech Matusik<sup>&#10013;</sup></td>
+    </tr>
+  </table>
+  <br />
+  <table border="0" align="center" class="affiliations">
+    <tr align="center" valign="middle">
+      <td width="120" align="right" style="padding:0 0px 0 0px;"><img src="images/mit_csail_logo.png" width="105" height="72" alt=""/></td>
+	<td width="97" align="left" style="padding:0 0px 0 0px;"><sup>&#10013;</sup> <a href="https://www.csail.mit.edu/">MIT CSAIL</a></td>
+    </tr>
+  </table>
+  <br />
+  <table width="200" border="0" align="center">
+    <tr>
+      <td class="caption"><img src="images/teaser_side.jpg" width="270" alt=""/></td>
+      <td class="caption"><table width="75%" border="0" align="right" cellpadding="0">
+        <tbody>
+          <tr>
+            <td width="16%"><img src="images/teaser/orig/0024Daniel_Craig_L1Ltxf1NeL8_0000007.jpg" width="100" /></td>
+            <td width="16%"><img src="images/teaser/orig/1044Phyllis_Diller_qoc0k5YwbRI_0000019.jpg" width="100" /></td>
+            <td width="16%"><img src="images/teaser/orig/0014Kodi_Smit-McPhee_NUZdfoqhB8o_0000015.jpg" width="100" /></td>
+            <td width="16%"><img src="images/teaser/orig/1114Maria_Sharapova_rWaBVelzaFk_0000022.jpg" width="100" /></td>
+            <td width="16%"><img src="images/teaser/orig/0022Andre_Braugher_p5AJtU5gclc_0000004.jpg" width="100" /></td>
+            <td width="20%"><img src="images/teaser/orig/1111Parineeti_Chopra_2yUgv3B_YcI_0000002.jpg" width="100" /></td>
+          </tr>
+          <tr>
+            <td colspan="6" align="center">True face (only for reference)</td>
+          </tr>
+          <tr>
+            <td><audio controls="controls" style="width: 110px;">
+              <source src="images/teaser/wav/0024Daniel_Craig_L1Ltxf1NeL8_0000007.wav" type="audio/wav" />
+              Does not support </audio></td>
+            <td><audio controls="controls" style="width: 110px;">
+              <source src="images/teaser/wav/1044Phyllis_Diller_qoc0k5YwbRI_0000019.wav" type="audio/wav" />
+              Does not support </audio></td>
+            <td><audio controls="controls" style="width: 110px;">
+              <source src="images/teaser/wav/0014Kodi_Smit-McPhee_NUZdfoqhB8o_0000015.wav" type="audio/wav" />
+              Does not support </audio></td>
+            <td><audio controls="controls" style="width: 110px;">
+              <source src="images/teaser/wav/1114Maria_Sharapova_rWaBVelzaFk_0000022.wav" type="audio/wav" />
+              Does not support </audio></td>
+            <td><audio controls="controls" style="width: 110px;">
+              <source src="images/teaser/wav/0022Andre_Braugher_p5AJtU5gclc_0000004.wav" type="audio/wav" />
+              Does not support </audio></td>
+            <td><audio controls="controls" style="width: 110px;">
+              <source src="images/teaser/wav/1111Parineeti_Chopra_2yUgv3B_YcI_0000002.wav" type="audio/wav" />
+              Does not support </audio></td>
+          </tr>
+          <tr>
+            <td colspan="6" align="center">Input waveforms</td>
+          </tr>
+          <tr>
+            <td><img src="images/teaser/s2f/0024Daniel_Craig_L1Ltxf1NeL8_0000007.jpg" width="100" /></td>
+            <td><img src="images/teaser/s2f/1044Phyllis_Diller_qoc0k5YwbRI_0000019.jpg" width="100" /></td>
+            <td><img src="images/teaser/s2f/0014Kodi_Smit-McPhee_NUZdfoqhB8o_0000015.jpg" width="100" /></td>
+            <td><img src="images/teaser/s2f/1114Maria_Sharapova_rWaBVelzaFk_0000022.jpg" width="100" /></td>
+            <td><img src="images/teaser/s2f/0022Andre_Braugher_p5AJtU5gclc_0000004.jpg" width="100" /></td>
+            <td><img src="images/teaser/s2f/1111Parineeti_Chopra_2yUgv3B_YcI_0000002.jpg" width="100" /></td>
+          </tr>
+          <tr>
+            <td colspan="6" align="center">Face reconstructed from speech</td>
+          </tr>
+        </tbody>
+      </table></td>
+    </tr>
+    <tr>
+      <td colspan="2" class="caption"><p>We consider the task of reconstructing an image of a person’s face from a short input audio segment of speech. We show several results of our method on VoxCeleb dataset.<strong> Our model takes only an audio waveform as input </strong>(the true faces are shown just for reference)<strong>.</strong> Note that our goal is not to reconstruct an accurate image of the person, but rather to recover characteristic physical features that are correlated with the input speech. <br />
+        <br />
+        <em>*The three authors  contributed equally to this work.</em><br />
+      </p></td>
+    </tr>
+  </table>
+	<br />
+  <p><span class="section">Abstract</span> </p>
+  <p>How much can we infer about a person's looks from the way they speak? In this paper, we study the task of reconstructing a facial image of a person from a short audio recording of that person speaking. We design and train a deep neural network to perform this task using millions of natural videos of people speaking from 
+Internet/Youtube. During training, our model learns audiovisual, voice-face correlations that allow it to produce images that capture various physical attributes of the speakers such as age, gender and ethnicity. This is done in a self-supervised manner, by utilizing the natural co-occurrence of faces and speech in Internet videos, without the need to model attributes explicitly. 
+Our reconstructions, obtained directly from audio, reveal the  correlations between faces and voices. We evaluate and numerically quantify how--and in what manner--our Speech2Face reconstructions from audio resemble the true face images of the speakers.<br />
+	  &nbsp;<br />
+</p>
+  <p class="section">Paper</p>
+  <table border="0">
+    <tbody>
+      <tr>
+        <td height="195"><a href="https://arxiv.org/abs/1905.09773"><img src="images/webthumbnail.jpg" alt="" width="175" height="211"/></a></td>
+        <td>&nbsp;</td>
+	<td>&nbsp;</td>
+        <td>&quot;Speech2Face: Learning the Face Behind a Voice&quot;,<br/>
+            Tae-Hyun Oh, Tali Dekel, Changil Kim, Inbar Mosseri, William T. Freeman, Michael Rubinstein, Wojciech Matusik<br/>
+	IEEE Conference on Computer Vision and Pattern Recognition (CVPR), 2019<br/>
+        <p><a href="https://arxiv.org/abs/1905.09773">[Arxiv]</a></p></td>
+      </tr>
+    </tbody>
+  </table>
+&nbsp;<br />
+  <p class="section">Supplementary Material</p>
+  <table width="283" height="136" border="0">
+    <tbody>
+      <tr>
+        <td width="165"><a href="supplemental/index.html"><img src="images/supp_fig.jpg" alt="" width="207"/></a></td>
+        <td width="6">&nbsp;</td>
+        <td width="56"><p>[<a href="supplemental/index.htm">Link</a>]</p></td>
+      </tr>
+    </tbody>
+  </table>
+&nbsp;<br />
+<p class="section">Ethical Considerations</p>
+  <table border="0">
+    <tbody>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>
+		Although this is a purely academic investigation, we feel that it is important to explicitly discuss in the paper a set of ethical considerations due to the potential sensitivity of facial information.<br/>
+		&nbsp;<br/>
+	</td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+        <td>&nbsp;</td>
+	<td>
+		<strong>Privacy.</strong> As mentioned, our method cannot recover the true identity of a person from their voice (i.e., an exact image of their face). 
+This is because our model is trained to capture visual features (related to age, gender, etc.) that are common to <i>many</i> individuals, and only in cases where there is strong enough evidence to connect those visual features with vocal/speech attributes in the data (see ``voice-face correlations'' below). As such, the model will only produce average-looking faces, with characteristic visual features that are correlated with the input speech. It will not produce images of specific individuals. <br/>
+		&nbsp;<br/>
+	</td></tr>
+	<tr>
+	<td>&nbsp;</td>
+        <td>&nbsp;</td>
+	<td>
+		<strong>Voice-face correlations and dataset bias.</strong> Our model is designed to reveal statistical correlations that exist between facial features and voices of speakers in the training data. The training data we use is a collection of educational videos from YouTube, and does not represent equally the entire world population. Therefore, the model---as is the case with any machine learning model---is affected by this uneven distribution of data. <br/>
+
+		More specifically, if a set of speakers might have vocal-visual traits that are relatively uncommon in the data, then the quality of our reconstructions for such cases may degrade.  For example, if a certain language does not appear in the training data, our reconstructions will not capture well the facial attributes that may be correlated with that language. <br/>
+
+		Note that some of the features in our predicted faces may not even be physically connected to speech, for example hair color or style. However, if many speakers in the training set who speak in a similar way (e.g., in the same language) also share some common visual traits (e.g., a common hair color or style), then those visual traits may show up in the predictions. <br/>
+ 
+		For the above reasons, we recommend that any further investigation or practical use of this technology will be carefully tested to ensure that the training data is representative of the intended user population. If that is not the case, more representative data should be broadly collected. <br/>
+		&nbsp;<br/>
+	</td>
+	</tr>
+	<tr>
+	<td>&nbsp;</td>
+        <td>&nbsp;</td>
+	<td>
+		<strong>Categories.</strong>
+		In our experimental section, we mention inferred demographic categories such as "White" and "Asian". These are categories defined and used by a commercial face attribute classifier (<a href="https://www.faceplusplus.com/">Face++</a>), and were only used for evaluation in this paper. Our model is not supplied with and does not make use of this information at any stage.<br/>
+		&nbsp;<br/>
+	</td>
+      </tr>
+    </tbody>
+  </table>
+<p class="section">Acknowledgment</p>
+  <table border="0">
+    <tbody>
+      <tr>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+        <td>
+		The authors would like to thank Suwon
+Shon, James Glass, Forrester Cole and Dilip Krishnan for
+helpful discussion. T.-H. Oh and C. Kim were supported by
+QCRI-CSAIL Computer Science Research Program at MIT.
+<br/>
+		&nbsp;<br/>
+	</td>
+	</tr>
+  </tbody>
+  </table>
+  <p>&nbsp;</p>
+  <p class="section">&nbsp;</p>
+  <!--
+  <p class="section">Google Research Blog</p>
+  <table width="1300" border="0">
+    <tbody>
+      <tr>
+        <td width="136"><img src="images/research_blog.png" width="200" height="131" alt=""/></td>
+        <td width="1048"><a href="https://research.googleblog.com/2017/08/making-visible-watermarks-more-effective.html"><img src="images/blog_post.png" width="300" height="166" alt=""/></a></td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="section">Press</p>
+  <table border="0" cellpadding="10">
+    <tbody>
+      <tr>
+        <td><a href="https://www.theverge.com/2017/8/18/16162108/google-research-algorithm-watermark-removal-photo-protection"><img src="images/the_verge_2016_logo.png" width="200" height="37" alt=""/></a></td>
+        <td><a href="https://petapixel.com/2017/08/18/ai-can-easily-erase-photo-watermarks-heres-protect/"><img src="images/petapixel.png" width="200" height="50" alt=""/></a></td>
+        <td><a href="https://www.engadget.com/2017/08/18/google-flawlessly-remove-stock-photo-watermarks/"><img src="images/engadget.png" width="200" height="44" alt=""/></a></td>
+        <td><a href="https://www.wired.com/story/stock-photo-google-algorithm/"><img src="images/wired-logo.jpg" width="200" height="46" alt=""/></a></td>
+      </tr>
+      <tr>
+        <td><a href="http://www.dailymail.co.uk/sciencetech/article-4803562/Google-AI-easily-erase-watermarks-photos.html"><img src="images/dm_com_29.png" width="210" height="62" alt=""/></a></td>
+        <td><a href="https://thenextweb.com/google/2017/08/18/google-watermark-stock-photo-remove/"><img src="images/the_next_web_logo.jpg" width="190" height="100" alt=""/></a></td>
+        <td>&nbsp;</td>
+        <td>&nbsp;</td>
+      </tr>
+    </tbody>
+  </table>
+  <p class="section">&nbsp;</p>
+  <p class="section">&nbsp;</p>
+  <p class="section">&nbsp;</p>
+-->
+  <p class="section">&nbsp;</p>
+</div>
+</body>
+</html>
